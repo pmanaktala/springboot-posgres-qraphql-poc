@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.UserInformation;
+import com.example.demo.entity.Article;
+import com.example.demo.entity.Author;
+import com.example.demo.repository.AritcleRepository;
 import com.example.demo.service.UserService;
 
 @RestController
@@ -20,6 +24,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AritcleRepository repo;
 
 	@GetMapping(value = "/all-users")
 	private ResponseEntity<List<UserDTO>> getAllUsers() {
@@ -40,5 +47,13 @@ public class UserController {
 
 		return new ResponseEntity<UserDTO>(res, HttpStatus.CREATED);
 	}
+	
+	@GetMapping(value = "/test")
+	private Object get() {
+		Author res = repo.findById(3L).get();
+		String a = res.getArticles().stream().map(o-> o.getText()).collect(Collectors.joining(","));
+		return a;
+	}
 
+	
 }

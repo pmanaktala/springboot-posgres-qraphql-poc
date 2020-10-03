@@ -1,0 +1,28 @@
+package com.example.demo.controller;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.dto.Author;
+import com.example.demo.repository.AuthorRepository;
+
+@RestController
+public class ArticalController {
+
+	@Autowired
+	private AuthorRepository author;
+	
+	@GetMapping(value = "/aritical/{authorId}")
+	
+	public Object getUser(@Value("authorId") Integer authorId) {
+		
+		Optional<Author> res = author.findById(authorId).get();
+		return author
+		
+	}
+
+}
