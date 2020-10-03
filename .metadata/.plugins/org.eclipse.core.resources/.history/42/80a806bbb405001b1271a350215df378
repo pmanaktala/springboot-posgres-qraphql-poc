@@ -1,0 +1,9 @@
+package com.example.demo.dto;
+
+public class SuccessDTO {
+
+	private String status;
+	private String message;
+	
+	
+}

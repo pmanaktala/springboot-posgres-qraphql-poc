@@ -1,0 +1,62 @@
+package com.example.demo.service.impl;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.UserDTO;
+import com.example.demo.dto.UserInformation;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserRepository userRepo;
+
+	@Override
+	public List<UserDTO> getAllUsers() {
+
+		List<User> response = userRepo.findAll();
+				
+		List<UserDTO> allUsers = new LinkedList<>();
+		
+		response.stream().forEach(o->{
+			UserDTO user = new UserDTO();
+			
+			user.setHttpStatus(Integer.toString(o.getId()));
+			user.setUserName(o.getFirstName());
+			
+		});
+		
+		return ;
+	}
+
+	@Override
+	public UserDTO saveUser(UserInformation user) {
+
+		User userEntity = new User();
+
+		userEntity.setFirstName(user.getUserName());
+		userEntity.setLastName(user.getAddress());
+
+		User savedUser = userRepo.save(userEntity);
+
+		return mapEntityToDTO(savedUser);
+	}
+
+	private UserDTO mapEntityToDTO(User savedUser) {
+
+		UserDTO dto = new UserDTO();
+
+		dto.setUserName(savedUser.getFirstName());
+		dto.setHttpStatus(Integer.toString(savedUser.getId()));
+
+		return dto;
+	}
+
+}

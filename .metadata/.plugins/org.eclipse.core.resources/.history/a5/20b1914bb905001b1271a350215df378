@@ -1,0 +1,22 @@
+package com.example.demo.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+
+@ControllerAdvice
+public class HandleExceptions {
+
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<ErrorDTO> handleAllUserNotFound(UserNotFoundException ex, WebRequest request) {
+		return null;
+
+	}
+	
+	@ExceptionHandler
+	public ResponseEntity<ErrorDTO> handleAllExceptions(Exception ex , WebRequest request) {
+		return null;
+
+	}
+}

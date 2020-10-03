@@ -1,0 +1,28 @@
+package com.example.demo.resolver;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Component;
+
+import com.coxautodev.graphql.tools.GraphQLResolver;
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+
+@Component
+public class Query implements GraphQLResolver {
+ 
+    private UserRepository articleRepository;
+ 
+    public Query(UserRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
+ 
+    public Optional<User> user(String firstName) {
+        return articleRepository.findByFirstName(firstName);
+    }
+ 
+    public Iterable<User> findAllUsers() {
+        return articleRepository.findAll();
+    }
+ 
+}
