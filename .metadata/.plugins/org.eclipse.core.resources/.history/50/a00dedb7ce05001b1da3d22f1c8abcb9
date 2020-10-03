@@ -1,0 +1,12 @@
+spring.profiles.active=local
+server.port=1234
+server.http2.enabled=true
+
+server.ssl.key-store: keystore.p12
+server.ssl.key-store-password: secret
+server.ssl.key-password = secret
+server.ssl.keyStoreType: PKCS12
+server.ssl.keyAlias: springboot
+
+server.ssl.ciphers=ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA
+server.ssl.protocol=TLS

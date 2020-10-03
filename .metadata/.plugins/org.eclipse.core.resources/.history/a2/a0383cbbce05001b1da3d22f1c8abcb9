@@ -1,5 +1,5 @@
 spring.profiles.active=local
-server.port=8443
+server.port=1234
 server.http2.enabled=true
 
 # Tell Spring Security (if used) to require requests over HTTPS
@@ -10,6 +10,6 @@ server.ssl.key-store-type=PKCS12
 # The path to the keystore containing the certificate
 server.ssl.key-store=classpath:keystore.p12
 # The password used to generate the certificate
-server.ssl.key-store-password= secret
+server.ssl.key-store-password= {your password here}
 # The alias mapped to the certificate
 server.ssl.key-alias=tomcat

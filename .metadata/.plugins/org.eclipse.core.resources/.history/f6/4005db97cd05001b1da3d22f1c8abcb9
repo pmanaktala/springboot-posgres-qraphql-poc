@@ -1,0 +1,9 @@
+spring.profiles.active=local
+server.port=1234
+server.http2.enabled=true
+
+server.ssl.key-store: classpath:keystore.p12
+server.ssl.key-store-password: secret
+server.ssl.key-password = secret
+server.ssl.keyStoreType: PKCS12
+server.ssl.keyAlias: springboot
